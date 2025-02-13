@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AndroidActivityLifeCycle</string>
+    <string name="login">Login</string>
+    <string name="please_provide_a_login">Please provide a login</string>
+    <string name="password">password</string>
+    <string name="please_provide_a_password">please provide a password</string>
+    <string name="str_Login">Login</string>
+</resources>
