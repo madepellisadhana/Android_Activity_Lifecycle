@@ -1,11 +1,15 @@
 package com.humber.lab5
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
+import android.view.View
+
 import android.widget.Button
 import android.widget.EditText
+import android.view.View.OnClickListener
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,9 +19,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.humber.lab5.model.LoginModel
 
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), View.OnClickListener {
 
     private var txtLogin: EditText? = null;
     private var txtPassword: EditText? = null;
@@ -30,6 +35,9 @@ class MainActivity : ComponentActivity() {
         txtLogin = findViewById(R.id.login);
         txtPassword = findViewById(R.id.password)
         btnLogin = findViewById(R.id.btn_login);
+        btnLogin?.let { button ->
+            button.setOnClickListener(this)
+        }
 
     }
 
@@ -48,8 +56,34 @@ class MainActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         Log.d("Main Activity", "onResume");
+        val login_model: LoginModel? = intent.getParcelableExtra("login_view");
 
+        txtLogin?.setText(login_model?.getLogin());
+
+        }
+
+    override fun onClick(p0: View?) {
+        when(p0?.id)
+        {
+            R.id.btn_login -> {
+
+                val loginModel: LoginModel = LoginModel();
+                loginModel.setLogin(txtLogin?.text.toString());
+
+                loginModel.setOnline(true);
+
+                val intent: Intent = Intent(this, LoginViewActivity::class.java);
+
+                intent.putExtra("login_model", loginModel);
+                startActivity(intent);
+
+
+            }
+        }
     }
+
+
+
 
     override fun onPause() {
         super.onPause()
@@ -93,6 +127,6 @@ class MainActivity : ComponentActivity() {
         txtPassword?.setText(password);
     }
 
+    }
 
 
-}

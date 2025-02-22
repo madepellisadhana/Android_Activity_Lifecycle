@@ -5,4 +5,9 @@
     <string name="password">password</string>
     <string name="please_provide_a_password">please provide a password</string>
     <string name="str_Login">Login</string>
+    <string name="login_hint">login</string>
+    <string name="online">Online</string>
+    <string name="back">back</string>
+    <string name="go_to_profile">gotoprofile</string>
+    <string name="go_to_Profile">Go To Profile</string>
 </resources>
